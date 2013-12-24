@@ -1,15 +1,17 @@
 class WordTable
   def initialize(filename=nil)
-    @table = Hash.new { Array.new }
+    @table = Hash.new
     add_file_to_table(filename) if !!filename
   end
 
   def add_file_to_table(filename)
     doc = parse_file(filename)
-    @table["."] += [doc[0]]
+    @table["."] ||= []
+    @table["."] << doc[0]
     doc.each_index do |word_i|
       break if word_i == (doc.length-1)
-      @table[doc[word_i]] += [doc[word_i+1]]
+      @table[doc[word_i]] ||= []
+      @table[doc[word_i]] << doc[word_i+1]
     end
   end
 
@@ -41,5 +43,8 @@ class WordTable
 end
 
 #Tests
-table = WordTable.new("test.txt")
+puts Time.now
+table = WordTable.new("philosophical_works/kant.txt")
+table.add_file_to_table("philosophical_works/hume.txt")
 table.generate_text
+puts Time.now
