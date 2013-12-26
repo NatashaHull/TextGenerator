@@ -11,8 +11,14 @@ def create_word_table
   table
 end
 
+if ENV["REDISTOGO_URL"]
+  uri = URI.parse(ENV["REDISTOGO_URL"])
+  REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+else
+  REDIS = Redis.new
+end
+
 table = create_word_table
-redis = Redis.new
 
 get '/' do
   send_file 'home.html'
@@ -21,11 +27,11 @@ end
 get '/results' do
   key = params.keys.first 
   if !!key
-    quote = redis.get(key)
+    quote = REDIS.get(key)
   else
     key = SecureRandom.urlsafe_base64(16).to_s
     quote = table.generate_text
-    redis.set(key, quote)
+    REDIS.set(key, quote)
     redirect "/results?#{key}"
   end
   quote
