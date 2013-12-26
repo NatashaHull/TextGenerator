@@ -8,6 +8,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    redis (3.0.6)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -27,5 +28,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  redis
   sinatra
   sinatra-reloader
