@@ -18,7 +18,7 @@ class WordTable
   def generate_text
     text = @table["."].sample
     text += text_loop(text)
-    puts text.gsub(/\s+([.,!?])/, '\1')
+    text.gsub(/\s+([.,!?])/, '\1')
   end
 
   private
@@ -41,10 +41,3 @@ class WordTable
       rand < 0.6
     end
 end
-
-#Tests
-puts Time.now
-table = WordTable.new("philosophical_works/kant.txt")
-table.add_file_to_table("philosophical_works/hume.txt")
-table.generate_text
-puts Time.now
