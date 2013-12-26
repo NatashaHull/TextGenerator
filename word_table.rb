@@ -1,5 +1,3 @@
-require 'json'
-
 class WordTable
   def initialize(filename=nil)
     @table = Hash.new
