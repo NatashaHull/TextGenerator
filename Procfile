@@ -1,0 +1,1 @@
+web: bundle exec ruby text_generator_app.rb -p $PORT
