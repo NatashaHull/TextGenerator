@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'redis'
-require_relative 'word_table.rb'
+require_relative 'lib/word_table.rb'
 
 def create_word_table
   table = WordTable.new("philosophical_works/hume.txt")
@@ -22,7 +22,7 @@ end
 table = create_word_table
 
 get '/' do
-  send_file 'home.html'
+  send_file 'public/home.html'
 end
 
 get '/results' do
