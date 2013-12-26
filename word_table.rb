@@ -8,25 +8,9 @@ class WordTable
 
   def add_file_to_table(filename)
     doc = parse_file(filename)
-    
-    #Add first word
-    @table["."] ||= []
-    @table["."] << doc[0]
-
-    #Add second word
-    @table[". #{doc[0]}"] ||= []
-    @table[". #{doc[0]}"] << doc[1]
-
-    #Add the rest
-    (1...doc.length).each do |word_i|
-      if doc[word_i] == "."
-        @table["."] << doc[word_i+1]
-      else
-        key = "#{doc[word_i-1]} #{doc[word_i]}"
-        @table[key] ||= []
-        @table[key] << doc[word_i+1]
-      end
-    end
+    add_first_word(doc)
+    add_second_word(doc)
+    add_remaining_words(doc)
   end
 
   def generate_text
@@ -41,6 +25,28 @@ class WordTable
       File.readlines(filename).join.gsub(/([.,!?])/, ' \1').split(/\s+/)
     end
 
+    def add_first_word(doc)
+      @table["."] ||= []
+      @table["."] << doc[0]
+    end
+
+    def add_second_word(doc)
+      @table[". #{doc[0]}"] ||= []
+      @table[". #{doc[0]}"] << doc[1]
+    end
+
+    def add_remaining_words(doc)
+      (1...doc.length).each do |word_i|
+        if doc[word_i] == "."
+          @table["."] << doc[word_i+1]
+        else
+          key = "#{doc[word_i-1]} #{doc[word_i]}"
+          @table[key] ||= []
+          @table[key] << doc[word_i+1]
+        end
+      end
+    end
+
     def text_loop(prev_word, curr_word)
       next_word = find_next_word(prev_word, curr_word)
       text = " #{next_word}"
@@ -53,9 +59,9 @@ class WordTable
 
     def find_next_word(prev_word, curr_word)
       if curr_word == "."
-        next_word = @table["."].sample
+        @table["."].sample
       else
-        next_word = @table["#{prev_word} #{curr_word}"].sample
+        @table["#{prev_word} #{curr_word}"].sample
       end
     end
 
