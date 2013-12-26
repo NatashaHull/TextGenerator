@@ -4,8 +4,9 @@ require 'redis'
 require_relative 'word_table.rb'
 
 def create_word_table
-  table = WordTable.new("philosophical_works/kant.txt")
-  table.add_file_to_table("philosophical_works/hume.txt")
+  table = WordTable.new("philosophical_works/hume.txt")
+  # table.add_file_to_table("philosophical_works/kant.txt")
+  table.add_file_to_table("philosophical_works/socrates.txt")
   table.add_file_to_table("philosophical_works/descartes.txt")
   table.add_file_to_table("philosophical_works/locke.txt")
   table
@@ -25,7 +26,7 @@ get '/' do
 end
 
 get '/results' do
-  key = params.keys.first 
+  key = params.keys.first
   if !!key
     quote = REDIS.get(key)
   else
