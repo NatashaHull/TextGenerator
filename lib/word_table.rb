@@ -20,7 +20,7 @@ class WordTable
   private
 
     def parse_file(filename)
-      File.readlines(filename).join.gsub(/([.,!?])/, ' \1').split(/\s+/)
+      File.readlines(filename).join.gsub(/([.,!?])\s+/, ' \1 ').split(/\s+/)
     end
 
     def add_first_word(doc)
