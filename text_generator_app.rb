@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'redis'
-require_relative 'lib/word_table.rb'
+require_relative 'lib/3gram_word_table.rb'
 
 def create_word_table
   table = WordTable.new("philosophical_works/hume.txt")
