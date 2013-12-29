@@ -1,1 +1,1 @@
-web: bundle exec ruby text_generator_app.rb -p $PORT
+web: bundle exec ruby app.rb -p $PORT
