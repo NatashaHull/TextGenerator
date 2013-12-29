@@ -16,8 +16,8 @@ end
 if ENV["REDISTOGO_URL"]
   uri = URI.parse(ENV["REDISTOGO_URL"])
   REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
-# elsif Sinatra::Base.development?
-  # REDIS =r Redis.new
+elsif Sinatra::Base.development?
+  REDIS = Redis.new
 else
   REDIS = Redis.new(:host => "markovosophers.tc6xga.0001.usw1.cache.amazonaws.com", :port => 6379)
 end
