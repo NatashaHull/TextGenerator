@@ -19,7 +19,8 @@ if ENV["REDISTOGO_URL"]
 elsif Sinatra::Base.development?
   REDIS = Redis.new
 else
-  REDIS = Redis.new(:host => "markovosophers.tc6xga.0001.usw1.cache.amazonaws.com", :port => 6379)
+  uri = URI.parse(ENV["REDIS_CACHE"])
+  REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => ENV["REDIS_PASS"])
 end
 
 table = create_word_table
