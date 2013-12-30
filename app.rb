@@ -39,5 +39,6 @@ get '/results' do
     REDIS.set(key, quote)
     redirect "/results?#{key}"
   end
-  quote
+  results = File.read("public/results.html")
+  ERB.new(results).result(binding)
 end
