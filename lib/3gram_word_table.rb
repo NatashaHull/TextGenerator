@@ -77,9 +77,3 @@ class WordTable
       rand < 0.6
     end
 end
-
-#Test
-table = WordTable.new("philosophical_works/hume.txt")
-other_table = WordTable.new("philosophical_works/socrates.txt")
-
-table.merge(other_table)
