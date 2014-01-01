@@ -17,6 +17,16 @@ class WordTable
     text.gsub(/\s+([.,!?])/, '\1')
   end
 
+  def merge(other_table)
+    @table.merge!(other_table.table) do |key, old_val, new_val|
+      old_val + new_val
+    end
+  end
+
+  protected
+
+    attr_reader :table
+
   private
 
     def parse_file(filename)
@@ -67,3 +77,9 @@ class WordTable
       rand < 0.6
     end
 end
+
+#Test
+table = WordTable.new("philosophical_works/hume.txt")
+other_table = WordTable.new("philosophical_works/socrates.txt")
+
+table.merge(other_table)
