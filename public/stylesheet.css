@@ -6,10 +6,10 @@ body {
 }
 
 body > #content {
+  border-radius: 20px;
   width: 80%;
-  height: 100%;
-  padding: 10px 20px 40px 20px;
-  margin: auto;
+  padding: 20px 20px 100px 20px;
+  margin: 30px auto;
   background-color: white;
 }
 
