@@ -21,6 +21,7 @@ class WordTable
     @table.merge!(other_table.table) do |key, old_val, new_val|
       old_val + new_val
     end
+    self
   end
 
   protected
