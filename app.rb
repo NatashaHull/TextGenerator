@@ -38,7 +38,11 @@ get '/' do
 end
 
 post '/create' do
-  word_table = generate_word_table(params["philosophers"], table)
+  if !!params["philosophers"]
+    word_table = generate_word_table(params["philosophers"], table)
+  else
+    word_table = generate_word_table(PHILOSOPHERS, table)
+  end
   key = SecureRandom.urlsafe_base64(16).to_s
   quote = word_table.generate_text
   REDIS.set(key, quote)
