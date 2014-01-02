@@ -13,32 +13,31 @@ body {
   color: white;
 }
 
-body > #content {
-  text-align: center;
+#wrapper {
   border-radius: 20px;
   width: 900px;
   padding: 20px;
   margin: 0 auto;
   background-color: white;
+  text-align: center;
+}
+
+#content {
+  font-family: 'convergence';
 }
 
 .main-text {
-  font-family: 'convergence';
   font-size: 1.5em;
   margin: 5px 0 30px;
-}
-
-.sub-text {
-  font-family: 'convergence';
 }
 
 .footer {
   font-family: Verdana;
   font-size: 0.8em;
+  color: #ccc;
   text-align: center;
   margin: auto;
   margin-top: 10px;
-  color: #ccc;
   width: 900px;
 }
 

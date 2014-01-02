@@ -5,6 +5,7 @@ require_relative 'lib/3gram_word_table.rb'
 
 PHILOSOPHERS = ['hume', 'kant', 'socrates', 'descartes', 'locke']
 
+#Methods
 def create_philosopher_table
   phil_table = Hash.new
   PHILOSOPHERS.each do |phil|
@@ -21,6 +22,13 @@ def generate_word_table(philosophers, table)
   word_table
 end
 
+def my_render(filename, quote=nil)
+  results = File.read("public/layout.html.erb")
+  results = ERB.new(results).result(binding) while results.include?("<%=")
+  results
+end
+
+#Main Variables
 if ENV["REDISTOGO_URL"]
   uri = URI.parse(ENV["REDISTOGO_URL"])
   REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
@@ -33,17 +41,14 @@ end
 
 table = create_philosopher_table
 
+#Routes
 get '/' do
-  page = File.read('public/home.html.erb')
-  ERB.new(page).result(binding)
+  my_render "public/home.html.erb"
 end
 
 post '/create' do
-  if !!params["philosophers"]
-    word_table = generate_word_table(params["philosophers"], table)
-  else
-    word_table = generate_word_table(PHILOSOPHERS, table)
-  end
+  phils = params["philosophers"] || PHILOSOPHERS
+  word_table = generate_word_table(phils, table)
   key = SecureRandom.urlsafe_base64(16).to_s
   quote = word_table.generate_text
   REDIS.set(key, quote)
@@ -53,6 +58,5 @@ end
 get '/results' do
   key = params.keys.first
   quote = REDIS.get(key)
-  results = File.read("public/results.html.erb")
-  ERB.new(results).result(binding)
+  my_render "public/results.html.erb", quote
 end

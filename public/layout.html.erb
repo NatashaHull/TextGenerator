@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Philosophical Wisdom</title>
+  <link href='https://fonts.googleapis.com/css?family=Convergence|Tangerine' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+  <p class="header"><em>Markovosophers</em></p>
+  <div id="wrapper">
+    <div id="content">
+      <% File.readlines(filename).each do |line| %>
+        <%= line %>
+      <% end %>
+    </div>
+    <% File.readlines('public/form.html').each do |line| %>
+      <%= line %>
+    <% end %>
+  </div>
+  <p class="footer">(C) 2014 <a href="http://www.nhull.com">Natasha Hull-Richter</a>. [<a href="https://www.github.com/NatashaHull/TextGenerator">How does it work?</a>]</p>
+</body>
+</html>
