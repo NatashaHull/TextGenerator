@@ -1,18 +1,48 @@
 body {
-  text-align: center;
-  font-family: 'convergence';
   background-image:url('black_denim.png');
   width: 100%;
   margin: 0 auto;
 }
 
+.header {
+  font-family: 'tangerine';
+  font-size: 4em;
+  width: 900px;
+  margin: auto;
+  margin-top: 10px;
+  color: white;
+}
+
 body > #content {
+  text-align: center;
   border-radius: 20px;
   width: 900px;
   padding: 20px 20px 100px 20px;
   margin: 0 auto;
-  margin-top: 30px;
   background-color: white;
+}
+
+.main-text {
+  font-family: 'convergence';
+  font-size: 1.5em;  
+}
+
+.sub-text {
+  font-family: 'convergence';
+}
+
+.footer {
+  font-family: Verdana;
+  font-size: 0.8em;
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+  color: white;
+  width: 900px;
+}
+
+.footer a {
+  color: white;
 }
 
 .philosopher-pic {

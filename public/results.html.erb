@@ -2,16 +2,18 @@
 <html>
 <head>
   <title>Philosophical Wisdom</title>
-  <link href='https://fonts.googleapis.com/css?family=Convergence' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Convergence|Tangerine' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
+  <p class="header"><em>Markovosophers</em></p>
   <div id="content">
-    <p><%= quote %></p>
-    <p>Want more? Please select one or more philosophers and click on the <strong>Get Wise!</strong> button below to for a random bit of wisdom!</p>
+    <p class="main-text"><%= quote %></p>
+    <p class="sub-text">Want more? Please select one or more philosophers and click on the <strong>Get Wise!</strong> button below to for a random bit of wisdom!</p>
     <% File.readlines('public/form.html').each do |line| %>
       <%= line %>
     <% end %>
   </div>
+  <p class="footer">(C) 2014 <a href="http://www.nhull.com">Natasha Hull-Richter</a>. [<a href="https://www.github.com/NatashaHull/TextGenerator">How does it work?</a>]</p>
 </body>
 </html>
