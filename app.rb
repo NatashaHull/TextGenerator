@@ -14,8 +14,11 @@ def load_all_philosophers
 end
 
 def load_philosopher(name)
-  yaml_table = File.read("#{name}.txt")
-  YAML::load(yaml_table)
+  puts "in load function"
+  puts Time.now
+  result = YAML.load_file("#{name}.yaml")
+  puts Time.now
+  result
 end
 
 if ENV["REDISTOGO_URL"]

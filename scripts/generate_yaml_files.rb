@@ -10,7 +10,7 @@ def create_word_tables
 end
 
 def create_yaml_file(table, name)
-  File.open("#{name}.txt", "w") do |file|
+  File.open("#{name}.yaml", "w") do |file|
     file.puts table.to_yaml
   end
 end
