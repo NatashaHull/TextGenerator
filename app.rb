@@ -3,13 +3,22 @@ require 'sinatra/reloader'
 require 'redis'
 require_relative 'lib/3gram_word_table.rb'
 
-def create_word_table
-  table = WordTable.new("philosophical_works/hume.txt")
-  # table.add_file_to_table("philosophical_works/kant.txt")
-  table.add_file_to_table("philosophical_works/socrates.txt")
-  table.add_file_to_table("philosophical_works/descartes.txt")
-  table.add_file_to_table("philosophical_works/locke.txt")
-  table
+PHILOSOPHERS = ['hume', 'kant', 'socrates', 'descartes', 'locke']
+
+def create_philosopher_table
+  phil_table = Hash.new
+  PHILOSOPHERS.each do |phil|
+    phil_table[phil] = WordTable.new("philosophical_works/#{phil}.txt")
+  end
+  phil_table
+end
+
+def generate_word_table(philosophers, table)
+  word_table = WordTable.new
+  philosophers.each do |phil|
+    word_table.merge!(table[phil])
+  end
+  word_table
 end
 
 if ENV["REDISTOGO_URL"]
@@ -22,22 +31,23 @@ else
   REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => ENV["REDIS_PASS"])
 end
 
-table = create_word_table
+table = create_philosopher_table
 
 get '/' do
   send_file 'public/home.html'
 end
 
+post '/create' do
+  word_table = generate_word_table(params["philosophers"], table)
+  key = SecureRandom.urlsafe_base64(16).to_s
+  quote = word_table.generate_text
+  REDIS.set(key, quote)
+  redirect "/results?#{key}"
+end
+
 get '/results' do
   key = params.keys.first
-  if !!key
-    quote = REDIS.get(key)
-  else
-    key = SecureRandom.urlsafe_base64(16).to_s
-    quote = table.generate_text
-    REDIS.set(key, quote)
-    redirect "/results?#{key}"
-  end
+  quote = REDIS.get(key)
   results = File.read("public/results.html.erb")
   ERB.new(results).result(binding)
 end

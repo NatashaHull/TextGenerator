@@ -17,7 +17,7 @@ class WordTable
     text.gsub(/\s+([.,!?])/, '\1')
   end
 
-  def merge(other_table)
+  def merge!(other_table)
     @table.merge!(other_table.table) do |key, old_val, new_val|
       old_val + new_val
     end
