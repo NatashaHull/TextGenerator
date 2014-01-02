@@ -29,7 +29,6 @@ else
 end
 
 table = load_all_philosophers
-puts table.class
 
 get '/' do
   send_file 'public/home.html'
