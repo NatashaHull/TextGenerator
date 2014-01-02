@@ -1,24 +1,15 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'redis'
-require 'yaml'
 require_relative 'lib/3gram_word_table.rb'
 
-def load_all_philosophers
-  table = load_philosopher("hume")
-  # table.merge(load_philosopher("kant"))
-  table.merge(load_philosopher("socrates"))
-  table.merge(load_philosopher("descartes"))
-  table.merge(load_philosopher("locke"))
+def create_word_table
+  table = WordTable.new("philosophical_works/hume.txt")
+  # table.add_file_to_table("philosophical_works/kant.txt")
+  table.add_file_to_table("philosophical_works/socrates.txt")
+  table.add_file_to_table("philosophical_works/descartes.txt")
+  table.add_file_to_table("philosophical_works/locke.txt")
   table
-end
-
-def load_philosopher(name)
-  puts "in load function"
-  puts Time.now
-  result = YAML.load_file("#{name}.yaml")
-  puts Time.now
-  result
 end
 
 if ENV["REDISTOGO_URL"]
@@ -31,7 +22,7 @@ else
   REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => ENV["REDIS_PASS"])
 end
 
-table = load_all_philosophers
+table = create_word_table
 
 get '/' do
   send_file 'public/home.html'
