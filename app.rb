@@ -34,7 +34,8 @@ end
 table = create_philosopher_table
 
 get '/' do
-  send_file 'public/home.html'
+  page = File.read('public/home.html')
+  ERB.new(page).result(binding)
 end
 
 post '/create' do
