@@ -17,14 +17,15 @@ body > #content {
   text-align: center;
   border-radius: 20px;
   width: 900px;
-  padding: 20px 20px 100px 20px;
+  padding: 20px;
   margin: 0 auto;
   background-color: white;
 }
 
 .main-text {
   font-family: 'convergence';
-  font-size: 1.5em;  
+  font-size: 1.5em;
+  margin: 5px 0 30px;
 }
 
 .sub-text {
@@ -37,12 +38,12 @@ body > #content {
   text-align: center;
   margin: auto;
   margin-top: 10px;
-  color: white;
+  color: #ccc;
   width: 900px;
 }
 
 .footer a {
-  color: white;
+  color: #ccc;
 }
 
 .philosopher-pic {

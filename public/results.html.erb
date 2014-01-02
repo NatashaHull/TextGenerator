@@ -6,10 +6,10 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
-  <p class="header"><em>Markovosophers</em></p>
+  <p class="header">Markovosophers</p>
   <div id="content">
     <p class="main-text"><%= quote %></p>
-    <p class="sub-text">Want more? Please select one or more philosophers and click on the <strong>Get Wise!</strong> button below to for a random bit of wisdom!</p>
+    <p class="sub-text">Want more? Select one or more philosophers and click on the <strong>Get Wise!</strong> button below to for a random bit of wisdom!</p>
     <% File.readlines('public/form.html').each do |line| %>
       <%= line %>
     <% end %>
