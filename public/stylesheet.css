@@ -3,6 +3,7 @@ body {
   font-family: 'convergence';
   background-image:url('black_denim.png');
   width: 100%;
+  margin: 0 auto;
 }
 
 body > #content {
