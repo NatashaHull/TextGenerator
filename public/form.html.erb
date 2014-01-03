@@ -1,0 +1,9 @@
+<form action="/create" method="post">
+  <% PHILOSOPHERS.each do |phil| %>
+    <input type="checkbox" name="philosophers[]" value="<%= phil %>">
+    <img src="<%= "#{phil}.png" %>" title="<%= phil.capitalize %>"
+         class="philosopher-pic">
+  <% end %>
+
+  <input type="submit" value="Get Wise!">
+</form>
