@@ -11,6 +11,7 @@ def create_philosopher_table
   PHILOSOPHERS.each do |phil|
     phil_table[phil] = WordTable.new("philosophical_works/#{phil}.txt")
   end
+  phil_table["all"] = generate_word_table(PHILOSOPHERS, phil_table)
   phil_table
 end
 
@@ -20,6 +21,14 @@ def generate_word_table(philosophers, table)
     word_table.merge!(table[phil])
   end
   word_table
+end
+
+def parse_phil_request(phils, table)
+  if !!phils && phils.length != 5
+    generate_word_table(phils, table)
+  else
+    table["all"]
+  end
 end
 
 def my_render(filename, quote=nil)
@@ -47,8 +56,8 @@ get '/' do
 end
 
 post '/create' do
-  phils = params["philosophers"] || PHILOSOPHERS
-  word_table = generate_word_table(phils, table)
+  phils = params["philosophers"]
+  word_table = parse_phil_request(phils, table)
   key = SecureRandom.urlsafe_base64(16).to_s
   quote = word_table.generate_text
   REDIS.set(key, quote)
