@@ -5,7 +5,7 @@ TextGenerator
 This started as a very simple 2-gram text generator app. I then turned it into a web application using Sinatra and Redis hosted on Heroku. Once I knew everything worked, but started to worry about the coherence of most of the results I was getting, I decided to change my text generator from a 2-gram text generator, to a 3-gram text generator. From there, I created a server on AWS using Elastic Beanstalk to host the 3-gram text generator app. Lastly, I jazzed it up a little by allowing users to select the philosophers who contribute to their generated text by adding a merge method and merging the necessary philosophers together and added some css and a nice background.
 
 #2-gram Text Generation
-After considering several different options, I settled on creating a simple hash table for generating text. I parsed the text to remove most of the whitespace and separate out punctuation so it would be seperable from the rest of the text. For the table, I made all of the keys the preceding word. For example, the string `"Early to bed and early to rise, makes a man healthy, wealthy, and wise."` would be parsed into the following hash
+After considering several different options, I settled on creating a simple hash table for generating text. I parsed the text to remove most of the whitespace and separate out punctuation so it would be added separately to the hash. For the table, I made all of the keys the preceding word. For example, the string `"Early to bed and early to rise, makes a man healthy, wealthy, and wise."` would be parsed into the following hash
 ```ruby
 {
   "." => ["Early"],
