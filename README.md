@@ -51,3 +51,8 @@ The 3-gram text generator works similarly to the 2-gram text generator. There ar
 }
 ```
 This meant that, when generating text, my text generator needs to know the two preceeding words to generate any word, unless the preceeding word is a period. Other than that, my method for generating text is essentially the same. The source code is [here](https://github.com/NatashaHull/TextGenerator/blob/master/lib/3gram_word_table.rb).
+
+#Credits
+Design: The background pattern for this website is taken from [http://subtlepatterns.com/](http://subtlepatterns.com/)
+Philosophical Texts: The philosophical texts are downloaded and redacted (I removed Project Gutenberg text) from Project Gutenberg. These philosophical texts are Hume's "Treatise on Human Nature", Kant's "Critique of Pure Reason", Soctrates's "Euthyphro", Descartes's "Meditations on First Philosophy", and Locke's "Essay Concerning Human Understanding."
+Photos: The photos of Hume, Kant, Socrates, Descartes, and Locke are all taken from the internet.
