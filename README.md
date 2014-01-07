@@ -57,4 +57,4 @@ Design: The background pattern for this website is taken from [http://subtlepatt
 
 Philosophical Texts: The philosophical texts are downloaded and redacted (I removed Project Gutenberg text) from Project Gutenberg. These philosophical texts are Hume's "Treatise on Human Nature", Kant's "Critique of Pure Reason", Soctrates's "Euthyphro", Descartes's "Meditations on First Philosophy", and Locke's "Essay Concerning Human Understanding."
 
-Photos: The photos of Hume, Kant, Socrates, Descartes, and Locke are all taken from the internet.
+Images from Wikimedia, EducaMadrid, Encyclopedia Britannica, aquarianagrarian.blogspot.com.
